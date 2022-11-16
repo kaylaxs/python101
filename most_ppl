@@ -1,0 +1,72 @@
+##People will do the survey online first to select all the avaiable time they can come to office. 
+##And the purpose is to find two timeframe that most people could come to the office. 
+
+import numpy as np
+import pandas as pd
+from pandas import Series, DataFrame
+import datetime as dt
+from itertools import product
+
+## time frame
+time=['Mon10:30—12:30pm','Mon2:00-4:00pm','Tue10:30—12:30pm','Tue2:00-4:00pm','Wed10:30—12:30pm',
+      'Wed2:00-4:00pm','Thur10:30—12:30pm','Thur2:00-4:00pm','Fri10:30—12:30pm','Fri2:00-4:00pm']
+
+## The index of df is Name of people; Columns are the timeframe, if they could come, the value is 1; if not, value is 0.
+## Get all their name
+name=df.reset_index()['Name'].to_list()
+
+## transfer into dictionary
+dic=df.to_dict()
+
+## create lists for every timeframe by selecting everyone who can come at the specific time
+for key, value in dic.items():
+    sec =[]
+    for x,y in value.items():
+        if y == 1: 
+            sec.append(x)
+            
+##Assume we have several list, A=[xxx,yyy,zzz],B=[xxx,yyy,mmm],C=[]...
+
+##create loop_val, must import product
+loop_val=[A,B,C,D,E,F,G,H,I,J]
+
+## write a function like 'anti_vowel'
+def ppl(text,v):
+    new=[]             
+    for i in text:
+        if i not in v:  
+            new.append(i) #will not include people in v, only people in text that are not in v       
+    return new 
+    
+
+n=0 
+max_value=0
+
+for i in loop_val:
+    n_value=len(i) #length of list1
+    z=0
+    for r in loop_val:
+        m_value=len(ppl(r,i)) #length of list2
+        if n_value + m_value > max_value: #total number of people
+            max_value= n_value + m_value #record it!
+            j=ppl(r,i)
+            l=i
+            num1= z
+            num = n
+            nv=n_value
+            mv=m_value
+        elif n_value+m_value == max_value: #other options
+            q = ppl(r,i)
+            p = i
+            s = z
+            t = n
+            nv1= n_value
+            mv1=m_value
+        else:
+            pass
+        z = z+1
+    n=n+1
+#max_value,m_value,n_value - number of people who can come
+#num,num1(s,t) - index of time
+#l,j(q,p)- name of people who can come
+#name - people's name
