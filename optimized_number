@@ -1,5 +1,6 @@
 ##People will do the survey online first to select all the avaiable time they can come to office. 
 ##And the purpose is to find two timeframe that most people could come to the office. 
+##It means we want to optimized the number and have maxmimum people who can come. 
 
 import numpy as np
 import pandas as pd
@@ -56,7 +57,7 @@ for i in loop_val:
             nv=n_value
             mv=m_value
         elif n_value+m_value == max_value: #other options
-            q = ppl(r,i)
+            q = ppl(r,i)#catch that monment!
             p = i
             s = z
             t = n
