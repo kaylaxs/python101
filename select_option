@@ -1,0 +1,26 @@
+## Assume we have a table, index would be timestamp, columns are the first, second, third choices.
+## People gonna do the survey first to select top 3 favorite gift. 
+## Every gift is unique, so the decision will based on the timestamp of submission.
+## Example- A has three choice, gift1, gift6, gift 9;B has three choice, gift1, gift6, gift5. B will select right after A.
+## If A selected gift1 before B, and nobody selected gift1 and gift6, then A will get gift1, and B will get gift6.
+## If someone selected gift1 before A, and nobody seleted gift6 and gift5, then A gets gift6 and B get gift 5.
+## The goal is to find the gift allocation.
+
+import re
+set1 = []
+res = []
+for r in df1.itertuples(index=False):
+    if r[1] in set1: #If first choice has been selected by previous people
+        if r[2] in set1: #if second choice has been selected by previous people
+            if r[3] in set1 #if third choice has been selected by previos people
+                res.append(None) #all three gift selections have been occupied
+            else:
+                set1.append(r[3]) 
+                res.append(r[3])
+        else: 
+            set1.append(r[2])
+            res.append(r[2])
+    else:
+        set1.append(r[1])
+        res.append(r[1])
+print1=pd.DataFrame(res).rename(columns={0:'gift'}).reset_index()
