@@ -1,0 +1,17 @@
+month_total = []
+df_s1['End_New'] = end_date
+avg = []
+for x in df_s1.index:
+    enter_date = df_s1["Start_New"][x]
+    current = df_s1["End_New"][x]#pd.Timestamp(year=2021,month=9,day=1)
+    month_total.append((current.year - enter_date.year) * 12 + (current.month - enter_date.month +1))
+    
+df_s1["Months"] = month_total
+
+def dayu(number):
+    if number > 6:
+        return 6
+    else:
+        return number
+
+df_s1['Months']=df_s1.apply(lambda x:dayu(x['Months']),axis=1)
